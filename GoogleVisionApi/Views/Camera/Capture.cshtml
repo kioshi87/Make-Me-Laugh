@@ -80,10 +80,12 @@
                     data_uri +
                     '"/>';
                 Webcam.upload(data_uri,
-                    '/Camera/Capture',
-                    function (code, text) {
-                        alert('Photo Captured');
-                    });
+                    '/Camera/Capture'
+                    //,
+                    //function (code, text) {
+                    //    alert('Photo Captured');
+                    //}
+                );
             });
         }
     </script>
