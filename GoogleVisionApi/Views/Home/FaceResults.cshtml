@@ -1,20 +1,22 @@
 ﻿@model List<FaceDetails>
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "FaceResults";
 }
 
-<div class="text-center">
-    <h4><a href="/Camera/Capture">Camera</a></h4>
+<h1>FaceResults</h1>
 
+<div class="text-center">
     @if (@Model != null)
     {
         @foreach (var face in @Model)
         {
             <img src="@face.ImagePath">
             @*<div>Anger: @face.Anger</div>*@
-            <div>Laughing?: @face.Joy</div>
+            <div>Joy: @face.Joy</div>
             @*<div>Sorrow: @face.Sorrow</div>
-                <div>Surprise: @face.Surprise</div>*@
+            <div>Surprise: @face.Surprise</div>*@
         }
     }
+
 </div>

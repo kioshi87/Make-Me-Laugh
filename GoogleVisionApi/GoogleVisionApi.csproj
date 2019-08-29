@@ -6,16 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="images\2014-07-24-ino.jpg" />
-    <Content Include="images\7999415981377f51ba8e16344fce93ae.jpg" />
-    <Content Include="images\ai-image-generation-fake-faces-people-nvidia-5c18b20b472c2__700.jpg" />
-    <Content Include="images\face.png" />
-    <Content Include="images\face2.png" />
-    <Content Include="images\fasolt.jpg" />
-    <Content Include="images\images.jpg" />
-    <Content Include="images\lrs1444.jpg" />
-    <Content Include="images\pics-laughing-people-172958-5990201.jpg" />
-    <Content Include="images\shutterstock_118972231.jpg" />
+    <Content Remove="apiKey_exclude.json" />
   </ItemGroup>
 
 
@@ -28,6 +19,7 @@
 
 
   <ItemGroup>
+    <Folder Include="images\" />
     <Folder Include="wwwroot\CameraPhotos\" />
   </ItemGroup>
 
