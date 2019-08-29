@@ -13,21 +13,21 @@ namespace GoogleVisionApi.Controllers
     {
         public IActionResult Index()
         {
-            var faceList = new List<FaceDetails>();
-            string path = "images/";
-            var filePaths = Directory.GetFiles(path);
+            //var faceList = new List<FaceDetails>();
+            //string path = "images/";
+            //var filePaths = Directory.GetFiles(path);
 
-            foreach (var imageName in filePaths)
-            {
-                var faceAnnotations = GoogleVisionApiClient.GoogleVisionApiClient.GetFaceAnnotations(imageName);
-                faceList.Add(new FaceDetails {ImagePath = imageName,
-                    Anger = faceAnnotations[0],
-                    Joy = faceAnnotations[1],
-                    Sorrow = faceAnnotations[2],
-                    Surprise = faceAnnotations[3] });
-            }
+            //foreach (var imageName in filePaths)
+            //{
+            //    var faceAnnotations = GoogleVisionApiClient.GoogleVisionApiClient.GetFaceAnnotations(imageName);
+            //    faceList.Add(new FaceDetails {ImagePath = imageName,
+            //        Anger = faceAnnotations[0],
+            //        Joy = faceAnnotations[1],
+            //        Sorrow = faceAnnotations[2],
+            //        Surprise = faceAnnotations[3] });
+            //}
 
-            return View(faceList);
+            return View();
         }
 
         public IActionResult Privacy()

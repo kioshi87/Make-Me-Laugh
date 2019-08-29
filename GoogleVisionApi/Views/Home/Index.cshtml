@@ -1,17 +1,17 @@
 ﻿
-@model  List<FaceDetails>
+@*@model  List<FaceDetails>*@
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
     <div class="text-center">
-        @foreach (var face in @Model)
+        @*@foreach (var face in @Model)
         {
             <img src="@face.ImagePath">
             <div>Anger: @face.Anger</div>
             <div>Joy: @face.Joy</div>
             <div>Sorrow: @face.Sorrow</div>
             <div>Surprise: @face.Surprise</div>
-        }
+        }*@
     </div>
