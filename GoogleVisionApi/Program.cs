@@ -15,21 +15,8 @@ namespace GoogleVisionApi
     {
         public static void Main(string[] args)
         {
-            //// Instantiates a client
-            //var client = ImageAnnotatorClient.Create();
-            //// Load the image file into memory
-            //var image = Image.FromFile("images/face.png");
-            //// Performs label detection on the image file
-            //var response = client.DetectFaces(image);
-            //foreach (var annotation in response)
-            //{
-            //    //if (annotation. != null)
-            //    Console.WriteLine(annotation.AngerLikelihood);
-            //    Console.WriteLine(annotation.JoyLikelihood);
-            //    Console.WriteLine(annotation.SorrowLikelihood);
-            //    Console.WriteLine(annotation.SurpriseLikelihood);
-
-            //}
+            var jokeText = "Where do you find a cow with no legs? Right where you left it.";
+            GoogleVisionApi.GoogleCloudPlatformApi.GoogleTextToSpeechClient.GetSpeechFromText(jokeText);
 
             CreateWebHostBuilder(args).Build().Run();
 

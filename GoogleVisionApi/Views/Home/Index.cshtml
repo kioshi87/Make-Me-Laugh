@@ -3,18 +3,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h4><a href="/Camera/Capture">Camera</a></h4>
+    <div class="text-center">
+        <h4><a href="/Camera/Capture">Camera</a></h4>
 
-    @if (@Model != null)
-    {
-        @foreach (var face in @Model)
+        <audio controls autoplay>
+            <source src="sample.mp3" type="audio/mpeg">
+        </audio>
+
+        @if (@Model != null)
         {
-            <img src="@face.ImagePath">
-            @*<div>Anger: @face.Anger</div>*@
-            <div>Laughing? @face.Joy</div>
-            @*<div>Sorrow: @face.Sorrow</div>
+            @foreach (var face in @Model)
+            {
+                <img src="@face.ImagePath">
+                @*<div>Anger: @face.Anger</div>*@
+                <div>Laughing? @face.Joy</div>
+                @*<div>Sorrow: @face.Sorrow</div>
                 <div>Surprise: @face.Surprise</div>*@
+            }
         }
-    }
-</div>
+    </div>

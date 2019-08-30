@@ -11,6 +11,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Google.Cloud.TextToSpeech.V1" Version="1.0.0" />
     <PackageReference Include="Google.Cloud.Vision.V1" Version="1.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -21,6 +22,12 @@
   <ItemGroup>
     <Folder Include="images\" />
     <Folder Include="wwwroot\CameraPhotos\" />
+    <Folder Include="wwwroot\audio\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\sample.mp3" />
   </ItemGroup>
 
 </Project>
