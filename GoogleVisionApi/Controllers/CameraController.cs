@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using GoogleVisionApi.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,12 @@ namespace DemoWebCam.Controllers
 {
     public class CameraController : Controller
     {
-        //private readonly DatabaseContext _context;
+        private readonly ImageStoreContext _context;
         private readonly IHostingEnvironment _environment;
-        public CameraController(IHostingEnvironment hostingEnvironment /*DatabaseContext context*/)
+        public CameraController(IHostingEnvironment hostingEnvironment, ImageStoreContext context)
         {
             _environment = hostingEnvironment;
-           // _context = context;
+            _context = context;
         }
     
         public IActionResult Capture()
@@ -50,12 +51,12 @@ namespace DemoWebCam.Controllers
                             StoreInFolder(file, filepath);
                         }
 
-                        // var imageBytes = System.IO.File.ReadAllBytes(filepath);
-                        //if (imageBytes != null)
-                        //{
-                        //    // Storing Image in Folder  
-                        //    StoreInDatabase(imageBytes);
-                        //}
+                        var imageBytes = System.IO.File.ReadAllBytes(filepath);
+                        if (imageBytes != null)
+                        {
+                            // Storing Image in Folder  
+                            StoreInDatabase(imageBytes);
+                        }
 
                     }
                 }
@@ -79,5 +80,31 @@ namespace DemoWebCam.Controllers
                 fs.Flush();
             }
         }
+        private void StoreInDatabase(byte[] imageBytes)
+        {
+            try
+            {
+                if (imageBytes != null)
+                {
+                    string base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
+                    string imageUrl = string.Concat("data:image/jpg;base64,", base64String);
+
+                    ImageStore imageStore = new ImageStore()
+                    {
+                        CreateDate = DateTime.Now,
+                        ImageBase64String = imageUrl,
+                        ImageStoreId = 0
+                    };
+
+                    _context.ImageStore.Add(imageStore);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
+    
