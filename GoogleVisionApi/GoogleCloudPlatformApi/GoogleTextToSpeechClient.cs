@@ -1,4 +1,5 @@
-﻿using Google.Cloud.TextToSpeech.V1;
+﻿using Glimpse.Core.ClientScript;
+using Google.Cloud.TextToSpeech.V1;
 using System;
 using System.Collections.Generic;
 using System.IO;

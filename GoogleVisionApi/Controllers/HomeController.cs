@@ -19,7 +19,7 @@ namespace GoogleVisionApi.Controllers
 
             foreach (var imageName in filePaths)
             {
-                var faceAnnotations = GoogleVisionApiClient.GoogleVisionApiClient.GetFaceAnnotations(imageName);
+                var faceAnnotations = GoogleCloudPlatformApi.GoogleVisionApiClient.GetFaceAnnotations(imageName);
                 faceList.Add(new FaceDetails
                 {
                     ImagePath = imageName.Remove(0, 8),
