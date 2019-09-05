@@ -45,18 +45,22 @@ namespace GoogleVisionApi.Controllers
                         {
                             // Storing Image in Folder  
                             StoreInFolder(file, filepath);
+                           
                         }
 
-                        //var imageBytes = System.IO.File.ReadAllBytes(filepath);
+                        var imageBytes = System.IO.File.ReadAllBytes(filepath);
+
+                        //return RedirectToAction("FaceResults", "Home");
+
                         //if (imageBytes != null)
                         //{
                         //    // Storing Image in Folder  
                         //    StoreInDatabase(imageBytes);
                         //}
-
+                       
                     }
                 }
-                return Json(true);
+                return Json(Url.Action("FaceResults", "Home"));
             }
             else
             {

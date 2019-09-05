@@ -14,6 +14,12 @@ namespace GoogleVisionApi.Controllers
     {
         public IActionResult Index()
         {
+
+            return View();
+        }
+
+        public IActionResult FaceResults()
+        {
             var faceList = new List<FaceDetails>();
             string path = "wwwroot/CameraPhotos";
             var filePaths = Directory.GetFiles(path);
@@ -32,6 +38,7 @@ namespace GoogleVisionApi.Controllers
             }
 
             return View(faceList);
+
         }
 
         public IActionResult Privacy()

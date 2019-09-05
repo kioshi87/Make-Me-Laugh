@@ -86,7 +86,19 @@
                     }
                 );
             });
+            Webcam.reset();
+            $.ajax({
+    type: "POST",
+    url: "http://localhost/Home/FaceResults",
+    dataType: 'json',
+    crossDomain: true,
+    success: function (data) {
+        window.location.href = data;
+    }
+});
         }
+
     </script>
+
 </body>
 </html>

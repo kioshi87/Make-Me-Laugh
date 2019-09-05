@@ -6,17 +6,12 @@
 
 <h1>FaceResults</h1>
 
-<div class="text-center">
-    @if (@Model != null)
+@if (@Model != null)
+{
+    @foreach (var face in @Model)
     {
-        @foreach (var face in @Model)
-        {
-            <img src="@face.ImagePath">
-            @*<div>Anger: @face.Anger</div>*@
-            <div>Joy: @face.Joy</div>
-            @*<div>Sorrow: @face.Sorrow</div>
-            <div>Surprise: @face.Surprise</div>*@
-        }
-    }
+        <img src="@face.ImagePath">
+        <div>Laughing? @face.Joy</div>
 
-</div>
+    }
+}
