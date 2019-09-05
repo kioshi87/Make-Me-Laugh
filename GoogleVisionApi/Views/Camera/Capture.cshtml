@@ -72,30 +72,21 @@
     </script>
     <!-- Code to handle taking the snapshot and displaying it locally -->
     <script language="JavaScript">
-        window.onload = function () {
-            setInterval(function () { take_snapshot(onclick) }, 1000),
-                setTimeout(function () { take_snapshot() }, 30000);
-        }
-        function take_snapshot() {
+    
+    function take_snapshot() {
             // take snapshot and get image data
-            Webcam.snap(function (data_uri) {
-                // display results in page
-                document.getElementById('results').innerHTML =
-                    '<img src="' + data_uri + '"/>';
-                Webcam.upload(data_uri, '/Camera/Capture' , function (code, text) { alert('Photo Captured');
-                    }
-                );
+            Webcam.snap((data_uri) => {
+                 document.getElementById('results').innerHTML =
+                        '<img src="' +
+                        data_uri +
+                        '"/>';
+                        Webcam.upload(data_uri,
+                            '/Camera/Capture'
+                    );
             });
+            alert('Photo Captured');
             Webcam.reset();
-            $.ajax({
-    type: "POST",
-    url: "http://localhost/Home/FaceResults",
-    dataType: 'json',
-    crossDomain: true,
-    success: function (data) {
-        window.location.href = data;
-    }
-});
+            window.location.replace("http://localhost:61220/Home/Faceresults");
         }
 
     </script>
