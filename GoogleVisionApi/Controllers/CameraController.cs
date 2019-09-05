@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DemoWebCam.Controllers
+namespace GoogleVisionApi.Controllers
 {
     public class CameraController : Controller
     {
@@ -19,11 +19,7 @@ namespace DemoWebCam.Controllers
             _environment = hostingEnvironment;
             _context = context;
         }
-    
-        public IActionResult Capture()
-        {
-            return View();
-        }
+
         [HttpPost]
         public IActionResult Capture(string name)
         {
@@ -51,12 +47,12 @@ namespace DemoWebCam.Controllers
                             StoreInFolder(file, filepath);
                         }
 
-                        var imageBytes = System.IO.File.ReadAllBytes(filepath);
-                        if (imageBytes != null)
-                        {
-                            // Storing Image in Folder  
-                            StoreInDatabase(imageBytes);
-                        }
+                        //var imageBytes = System.IO.File.ReadAllBytes(filepath);
+                        //if (imageBytes != null)
+                        //{
+                        //    // Storing Image in Folder  
+                        //    StoreInDatabase(imageBytes);
+                        //}
 
                     }
                 }
@@ -72,6 +68,29 @@ namespace DemoWebCam.Controllers
         /// </summary>  
         /// <param name="file"></param>  
         /// <param name="fileName"></param>  
+
+        public IActionResult Index()
+        {
+            var faceList = new List<FaceDetails>();
+            string path = "wwwroot/CameraPhotos";
+            var filePaths = Directory.GetFiles(path);
+
+            foreach (var imageName in filePaths)
+            {
+                var faceAnnotations = GoogleCloudPlatformApi.GoogleVisionApiClient.GetFaceAnnotations(imageName);
+                faceList.Add(new FaceDetails
+                {
+                    ImagePath = imageName.Remove(0, 8),
+                    Anger = faceAnnotations[0],
+                    Joy = faceAnnotations[1],
+                    Sorrow = faceAnnotations[2],
+                    Surprise = faceAnnotations[3]
+                });
+            }
+
+            return View(faceList);
+        }
+
         private void StoreInFolder(IFormFile file, string fileName)
         {
             using (FileStream fs = System.IO.File.Create(fileName))
@@ -80,31 +99,32 @@ namespace DemoWebCam.Controllers
                 fs.Flush();
             }
         }
-        private void StoreInDatabase(byte[] imageBytes)
-        {
-            try
-            {
-                if (imageBytes != null)
-                {
-                    string base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
-                    string imageUrl = string.Concat("data:image/jpg;base64,", base64String);
 
-                    ImageStore imageStore = new ImageStore()
-                    {
-                        CreateDate = DateTime.Now,
-                        ImageBase64String = imageUrl,
-                        ImageStoreId = 0
-                    };
+        //private void StoreInDatabase(byte[] imageBytes)
+        //{
+        //    try
+        //    {
+        //        if (imageBytes != null)
+        //        {
+        //            string base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
+        //            string imageUrl = string.Concat("data:image/jpg;base64,", base64String);
 
-                    _context.ImageStore.Add(imageStore);
-                    _context.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //            ImageStore imageStore = new ImageStore()
+        //            {
+        //                CreateDate = DateTime.Now,
+        //                ImageBase64String = imageUrl,
+        //                ImageStoreId = 0
+        //            };
+
+        //            _context.ImageStore.Add(imageStore);
+        //            _context.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }
     

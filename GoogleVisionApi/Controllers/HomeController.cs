@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GoogleVisionApi.Models;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GoogleVisionApi.Controllers
 {
@@ -14,7 +15,7 @@ namespace GoogleVisionApi.Controllers
         public IActionResult Index()
         {
             var faceList = new List<FaceDetails>();
-            string path = "wwwroot/CameraPhotos/";
+            string path = "wwwroot/CameraPhotos";
             var filePaths = Directory.GetFiles(path);
 
             foreach (var imageName in filePaths)
@@ -32,29 +33,6 @@ namespace GoogleVisionApi.Controllers
 
             return View(faceList);
         }
-
-        //public IActionResult FaceResults()
-        //{
-        //    var faceList = new List<FaceDetails>();
-        //    string path = "wwwroot/CameraPhotos/";
-        //    var filePaths = Directory.GetFiles(path);
-
-        //    foreach (var imageName in filePaths)
-        //    {
-        //        var faceAnnotations = GoogleVisionApiClient.GoogleVisionApiClient.GetFaceAnnotations(imageName);
-        //        faceList.Add(new FaceDetails
-        //        {
-        //            ImagePath = imageName.Remove(0, 8),
-        //            Anger = faceAnnotations[0],
-        //            Joy = faceAnnotations[1],
-        //            Sorrow = faceAnnotations[2],
-        //            Surprise = faceAnnotations[3]
-        //        });
-        //    }
-
-        //    return View(faceList);
-
-        //}
 
         public IActionResult Privacy()
         {

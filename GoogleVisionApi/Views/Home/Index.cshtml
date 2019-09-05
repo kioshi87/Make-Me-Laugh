@@ -43,6 +43,9 @@
                 <div id="my_camera"></div>
                 <!-- A button for taking snaps -->
                 <div align="center">
+                    
+                    <h2>Capture images</h2>
+
                     <audio controls autoplay>
                         <source src="sample.mp3" type="audio/mpeg">
                     </audio>
@@ -55,12 +58,12 @@
                             @*<div>Anger: @face.Anger</div>*@
                             <div>Laughing? @face.Joy</div>
                             @*<div>Sorrow: @face.Sorrow</div>
-                              <div>Surprise: @face.Surprise</div>*@
+                <div>Surprise: @face.Surprise</div>*@
                         }
                     }
                 </div>
                 <form>
-                    <input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot.Webcam()">
+                    <input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">
                 </form>
             </div>
         </div>
@@ -84,30 +87,61 @@
             width: 320,
             height: 240,
             image_format: 'jpeg',
-            jpeg_quality: 90,
-            fps: 10
+            jpeg_quality: 90
         });
         Webcam.attach('#my_camera');
     </script>
     <!-- Code to handle taking the snapshot and displaying it locally -->
     <script language="JavaScript">
+
+        //window.onload = function () {
+        //    setInterval(function () { take_snapshot(onclick) }, 1000),
+        //        clearInterval(function () { take_snapshot() }, 5000);
+        //}
+        var cameraInterval = setInterval(take_snapshot, 1000);
+        setTimeout(() => { clearInterval(cameraInterval) }, 30000);
+
         function take_snapshot() {
             // take snapshot and get image data
             Webcam.snap(function (data_uri) {
                 // display results in page
                 document.getElementById('results').innerHTML =
-                    '<img src="' +
-                    data_uri +
-                    '"/>';
-                Webcam.upload(data_uri,
-                    '/Camera/Capture'
-                    //,
-                    //function (code, text) {
-                    //    alert('Photo Captured');
-                    //}
-                );
+                    '<img src="' + data_uri + '"/>';
+                Webcam.upload(data_uri, '/Camera/Capture');
+
             });
         }
+
+        //function stopCamera() {
+        //    clearInterval(cameraInterval)
+        //}
+
+        //Boolean cameraOn = true;
+        //var timeoutInSeconds = 30000;
+
+        //while (cameraOn) {
+
+        //    window.onclick = function () {
+        //    setInterval(function () { take_snapshot(time) }, 1000);
+                
+        //        }
+        //    function take_snapshot() {
+        //    // take snapshot and get image data
+        //    Webcam.snap(function (data_uri) {
+        //    // display results in page
+        //        document.getElementById('results').innerHTML =
+        //            '<img id="base64image" src="' + data_uri + '"/>';
+        //        Webcam.upload(data_uri, '/Camera/Capture' );
+        //         });
+        //    }
+
+        //    function checkTime(i) {
+        //    if (i<10) {
+        //    i = "0" + i;
+        //    }
+        //    return i;
+        //}
+        
     </script>
 </body>
 </html>

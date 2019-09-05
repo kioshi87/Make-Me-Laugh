@@ -29,7 +29,6 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\audio\" />
     <Folder Include="wwwroot\CameraPhotos\" />
   </ItemGroup>
 

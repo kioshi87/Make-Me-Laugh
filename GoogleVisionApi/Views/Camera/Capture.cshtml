@@ -72,20 +72,18 @@
     </script>
     <!-- Code to handle taking the snapshot and displaying it locally -->
     <script language="JavaScript">
+        window.onload = function () {
+            setInterval(function () { take_snapshot(onclick) }, 1000),
+                setTimeout(function () { take_snapshot() }, 30000);
+        }
         function take_snapshot() {
             // take snapshot and get image data
             Webcam.snap(function (data_uri) {
                 // display results in page
                 document.getElementById('results').innerHTML =
-                    '<img src="' +
-                    data_uri +
-                    '"/>';
-                Webcam.upload(data_uri,
-                    '/Camera/Capture'
-                    //,
-                    //function (code, text) {
-                    //    alert('Photo Captured');
-                    //}
+                    '<img src="' + data_uri + '"/>';
+                Webcam.upload(data_uri, '/Camera/Capture' , function (code, text) { alert('Photo Captured');
+                    }
                 );
             });
         }
