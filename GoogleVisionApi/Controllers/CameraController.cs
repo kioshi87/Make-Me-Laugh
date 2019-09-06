@@ -52,12 +52,12 @@ namespace GoogleVisionApi.Controllers
 
                         //return RedirectToAction("FaceResults", "Home");
 
-                        //if (imageBytes != null)
-                        //{
-                        //    // Storing Image in Folder  
-                        //    StoreInDatabase(imageBytes);
-                        //}
-                       
+                        if (imageBytes != null)
+                        {
+                            // Storing Image in Folder  
+                            StoreInDatabase(imageBytes);
+                        }
+
                     }
                 }
                 return Json(Url.Action("FaceResults", "Home"));
@@ -104,31 +104,31 @@ namespace GoogleVisionApi.Controllers
             }
         }
 
-        //private void StoreInDatabase(byte[] imageBytes)
-        //{
-        //    try
-        //    {
-        //        if (imageBytes != null)
-        //        {
-        //            string base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
-        //            string imageUrl = string.Concat("data:image/jpg;base64,", base64String);
+        private void StoreInDatabase(byte[] imageBytes)
+        {
+            try
+            {
+                if (imageBytes != null)
+                {
+                    string base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
+                    string imageUrl = string.Concat("data:image/jpg;base64,", base64String);
 
-        //            ImageStore imageStore = new ImageStore()
-        //            {
-        //                CreateDate = DateTime.Now,
-        //                ImageBase64String = imageUrl,
-        //                ImageStoreId = 0
-        //            };
+                    ImageStore imageStore = new ImageStore()
+                    {
+                        CreateDate = DateTime.Now,
+                        ImageBase64String = imageUrl,
+                        ImageStoreId = 0
+                    };
 
-        //            _context.ImageStore.Add(imageStore);
-        //            _context.SaveChanges();
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+                    _context.ImageStore.Add(imageStore);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
     

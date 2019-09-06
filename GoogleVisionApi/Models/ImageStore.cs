@@ -10,5 +10,6 @@ namespace GoogleVisionApi.Models
         public int ImageStoreId { get; set; }
         public string ImageBase64String { get; set; }
         public DateTime? CreateDate { get; set; }
+        public PlayerModel PlayerId { get; set; }
     }
 }
