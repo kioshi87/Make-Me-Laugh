@@ -29,7 +29,7 @@ namespace GoogleVisionApi.Controllers
                 var faceAnnotations = GoogleCloudPlatformApi.GoogleVisionApiClient.GetFaceAnnotations(imageName);
                 faceList.Add(new FaceDetails
                 {
-                    ImagePath = imageName.Remove(0, 8),
+                    ImagePath = imageName.Remove(0, 21),
                     Anger = faceAnnotations[0],
                     Joy = faceAnnotations[1],
                     Sorrow = faceAnnotations[2],
