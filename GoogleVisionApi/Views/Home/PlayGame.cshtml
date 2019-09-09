@@ -1,6 +1,9 @@
-﻿@{
-    Layout = null;
+﻿
+@{
+    ViewData["Title"] = "PlayGame";
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,24 +34,21 @@
         }
     </style>
 </head>
-<body class="container">
+<body>
     <br />
-
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">Camera</div>
+    <h1 class="text-center">Go!</h1>
+    <div class="container" align="center">     
+        <div>
+            <div class="panel-heading"></div>
             <div class="panel-body">
                 <div id="my_camera"></div>
                 <!-- A button for taking snaps -->
-                <form>
-                    <input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">
-                </form>
+                <div>
+                    <h2>Capture images</h2>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
+        </div>     
+        <div>
             <div class="panel-heading">Captured Photo</div>
             <div class="panel-body">
                 <div id="results">Your captured image will appear here...</div>
@@ -57,14 +57,13 @@
             <br />
         </div>
     </div>
-    <div class="col-md-2">    </div>
     <!-- First, include the Webcam.js JavaScript Library -->
     <script src="~/webcamjs/webcam.js"></script>
     <!-- Configure a few settings and attach camera -->
     <script language="JavaScript">
         Webcam.set({
-            width: 320,
-            height: 240,
+            width: 640,
+            height: 480,
             image_format: 'jpeg',
             jpeg_quality: 90
         });
@@ -72,22 +71,21 @@
     </script>
     <!-- Code to handle taking the snapshot and displaying it locally -->
     <script language="JavaScript">
-    
-    function take_snapshot() {
+
+        var cameraInterval = setInterval(take_snapshot, 1000);
+        setTimeout(() => { clearInterval(cameraInterval) }, 3000);
+
+        function take_snapshot() {
+        
             // take snapshot and get image data
-            Webcam.snap((data_uri) => {
-                 document.getElementById('results').innerHTML =
-                        '<img src="' +
-                        data_uri +
-                        '"/>';
-                        Webcam.upload(data_uri,
-                            '/Camera/Capture'
-                    );
+            Webcam.snap(function (data_uri) {
+                // display results in page
+                document.getElementById('results').innerHTML =
+                    '<img src="' + data_uri + '"/>';
+                Webcam.upload(data_uri, '/Camera/Capture');
             });
-            alert('Photo Captured');
         }
 
     </script>
-
 </body>
 </html>

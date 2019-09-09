@@ -15,6 +15,9 @@ namespace GoogleVisionApi.Models
         public bool Win { get; set; }
         public string Score { get; set; }
         public string FunniestPictures { get; set; } // Create a picture class and DB or save pictures directly to player DB and set ID string?
-        public ImageStore ImageStoreId { get; set; }
+
+        public List<ImageStore> ImageList { get; set; }
+
+        //public ImageStore ImageStoreId { get; set; }
     }
 }

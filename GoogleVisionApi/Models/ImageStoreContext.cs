@@ -13,6 +13,10 @@ namespace GoogleVisionApi.Models
 
         }
         public DbSet<ImageStore> ImageStore { get; set; }
+
+        public DbSet<PlayerModel> PlayerModel { get; set; }
+
+
     }
 }   
     

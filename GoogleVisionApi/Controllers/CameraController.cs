@@ -52,11 +52,11 @@ namespace GoogleVisionApi.Controllers
 
                         //return RedirectToAction("FaceResults", "Home");
 
-                        if (imageBytes != null)
-                        {
-                            // Storing Image in Folder  
-                            StoreInDatabase(imageBytes);
-                        }
+                        //if (imageBytes != null)
+                        //{
+                        //    // Storing Image in Folder  
+                        //    StoreInDatabase(imageBytes);
+                        //}
 
                     }
                 }

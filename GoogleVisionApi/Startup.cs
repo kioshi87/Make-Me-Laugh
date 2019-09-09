@@ -34,7 +34,7 @@ namespace GoogleVisionApi
             });
             services.AddDbContext<ImageStoreContext>(options =>
             {
-                options.UseSqlServer("Server=admin-PC\\SQLEXPRESS;Database=ImageStore;Trusted_Connection=True;");
+                options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ImageStore;Trusted_Connection=True;");
             });
 
 

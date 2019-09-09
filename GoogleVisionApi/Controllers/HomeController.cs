@@ -41,6 +41,11 @@ namespace GoogleVisionApi.Controllers
 
         }
 
+        public IActionResult PlayGame()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

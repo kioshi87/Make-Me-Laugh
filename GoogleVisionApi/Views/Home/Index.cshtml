@@ -32,97 +32,28 @@
         }
     </style>
 </head>
-<body class="container">
+<body>
     <br />
     <h1 class="text-center">Make Me Laugh</h1>
-    <audio controls autoplay>
-        <source src="sample.mp3" type="audio/mpeg">
-    </audio>
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">Camera</div>
-            <div class="panel-body">
-                <div id="my_camera"></div>
-                <!-- A button for taking snaps -->
-                <div align="center">
-
-                    <h2>Capture images</h2>
-
-
-
-                    @if (@Model != null)
-                    {
-                        @foreach (var face in @Model)
-                        {
-                            <img src="@face.ImagePath">
-                            @*<div>Anger: @face.Anger</div>*@
-                            <div>Laughing? @face.Joy</div>
-                            @*<div>Sorrow: @face.Sorrow</div>
-                                <div>Surprise: @face.Surprise</div>*@
-                        }
-                    }
-                </div>
-                <form>
-                    <input type="button" class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">
-                </form>
-            </div>
+    <div align="center">
+        <p>Center your face</p>
+        <p>Keep a straight face</p>
+        <p><h3>@Html.ActionLink("Click here to Play!", "PlayGame")</h3></p>
+    </div>
+    <div align="center">
+        <div id="my_camera" >
+            <script src="~/webcamjs/webcam.js"></script>
+            <script language="JavaScript">
+                Webcam.set({
+                    width: 640,
+                    height: 480,
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+                Webcam.attach('#my_camera');
+            </script>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">Captured Photo</div>
-            <div class="panel-body">
-                <div id="results">Your captured image will appear here...</div>
-            </div>
-            <br />
-            <br />
-        </div>
-    </div>
-    <div class="col-md-2">    </div>
-    <!-- First, include the Webcam.js JavaScript Library -->
-    <script src="~/webcamjs/webcam.js"></script>
-    <!-- Configure a few settings and attach camera -->
-    <script language="JavaScript">
-        Webcam.set({
-            width: 640,
-            height: 480,
-            image_format: 'jpeg',
-            jpeg_quality: 90
-        });
-        Webcam.attach('#my_camera');
-    </script>
-    <!-- Code to handle taking the snapshot and displaying it locally -->
-    <script language="JavaScript">
-
-        //window.onload = function () {
-        //    setInterval(function () { take_snapshot(onclick) }, 1000),
-        //        clearInterval(function () { take_snapshot() }, 5000);
-        //}
-        var cameraInterval = setInterval(take_snapshot, 1000);
-        setTimeout(() => { clearInterval(cameraInterval) }, 10000);
-
-
-        function take_snapshot() {
-            // take snapshot and get image data
-            Webcam.snap(function (data_uri) {
-                // display results in page
-                document.getElementById('results').innerHTML =
-                    '<img src="' + data_uri + '"/>';
-                Webcam.upload(data_uri, '/Camera/Capture');
-
-            });
-            //Webcam.reset();
-            if (setTimeout == 10000) {
-                window.location.replace("/view/Faceresults");
-            }
-        }
-
-
-
-
-
-    </script>
 </body>
 </html>
 
