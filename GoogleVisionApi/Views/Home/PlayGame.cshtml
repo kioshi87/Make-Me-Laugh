@@ -36,8 +36,9 @@
 </head>
 <body>
     <br />
-    <h1 class="text-center">Go!</h1>
-    <div class="container" align="center">     
+    <h1 class="text-center">Wait for the camera to appear...</h1>
+    <div class="container" align="center">    
+        <button onclick="start_pics()">Go</button>
         <div>
             <div class="panel-heading"></div>
             <div class="panel-body">
@@ -57,6 +58,7 @@
             <br />
         </div>
     </div>
+    
     <!-- First, include the Webcam.js JavaScript Library -->
     <script src="~/webcamjs/webcam.js"></script>
     <!-- Configure a few settings and attach camera -->
@@ -72,9 +74,12 @@
     <!-- Code to handle taking the snapshot and displaying it locally -->
     <script language="JavaScript">
 
-        var cameraInterval = setInterval(take_snapshot, 1000);
-        setTimeout(() => { clearInterval(cameraInterval) }, 3000);
+        function start_pics() {
+            var cameraInterval = setInterval(take_snapshot, 1000);
+            setTimeout(() => { clearInterval(cameraInterval) }, 3000);
+        }
 
+       
         function take_snapshot() {
         
             // take snapshot and get image data
