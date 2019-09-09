@@ -15,16 +15,12 @@ namespace GoogleVisionApi
     {
         public static void Main(string[] args)
         {
-            var jokeText = "Where do you find a cow with no legs? Right where you left it.";
-            GoogleVisionApi.GoogleCloudPlatformApi.GoogleTextToSpeechClient.GetSpeechFromText(jokeText);
-
-            CreateWebHostBuilder(args).Build().Run();
-
-
+            BuildWebHost(args).Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .Build();
     }
 }
