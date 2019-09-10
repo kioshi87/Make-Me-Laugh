@@ -38,7 +38,7 @@ namespace GoogleVisionApi
             });
             services.AddDbContext<ImageStoreContext>(options =>
             {
-                options.UseSqlServer("Server=tcp:makemelaugh.database.windows.net,1433;Initial Catalog=MakeMeLaugh;Persist Security Info=False;User ID=adminmml;Password=#laugh2019;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                options.UseSqlServer("Server=tcp:makemelaugh.database.windows.net,1433;Initial Catalog=MakeMeLaugh;Persist Security Info=False;User ID={username};Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             });
 
 
