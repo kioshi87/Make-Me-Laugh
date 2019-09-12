@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
+
 namespace GoogleVisionApi
 {
     public class Startup
@@ -30,6 +32,7 @@ namespace GoogleVisionApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var dbInfo = new DbConnectionInfo();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -38,7 +41,9 @@ namespace GoogleVisionApi
             });
             services.AddDbContext<ImageStoreContext>(options =>
             {
-                options.UseSqlServer("Server=tcp:makemelaugh.database.windows.net,1433;Initial Catalog=MakeMeLaugh;Persist Security Info=False;User ID={username};Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                options.UseSqlServer($"Server=tcp:makemelaugh.database.windows.net,1433;Initial Catalog=MakeMeLaugh;Persist Security Info=False;User ID={dbInfo.Username};Password={dbInfo.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                //options.UseSqlServer(Configuration.GetConnectionString("MakeMeLaugh"));
+
             });
 
 

@@ -12,7 +12,7 @@ namespace GoogleVisionApi.GoogleCloudPlatformApi
         {
             var faceAnnotationsList = new string[4];
             // Instantiates a client
-            var client = ImageAnnotatorClient.Create();
+            var client = ImageAnnotatorClient.Create();      
             // Load the image file into memory
             var image = Image.FromFile(imagePath);
             // Performs label detection on the image file
