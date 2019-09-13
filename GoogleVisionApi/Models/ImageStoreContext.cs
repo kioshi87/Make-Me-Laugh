@@ -16,7 +16,6 @@ namespace GoogleVisionApi.Models
 
         public DbSet<PlayerModel> PlayerModel { get; set; }
 
-
     }
 }   
     
