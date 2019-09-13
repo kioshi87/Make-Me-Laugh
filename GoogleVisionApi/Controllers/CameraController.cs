@@ -45,12 +45,11 @@ namespace GoogleVisionApi.Controllers
                         {
                             // Storing Image in Folder  
                             StoreInFolder(file, filepath);
-                           
+
                         }
 
                         var imageBytes = System.IO.File.ReadAllBytes(filepath);
 
-                        //return RedirectToAction("FaceResults", "Home");
 
                         if (imageBytes != null)
                         {
@@ -113,12 +112,18 @@ namespace GoogleVisionApi.Controllers
                     string base64String = Convert.ToBase64String(imageBytes, 0, imageBytes.Length);
                     string imageUrl = string.Concat("data:image/jpg;base64,", base64String);
 
+                    var faceAnnotations = GoogleCloudPlatformApi.GoogleVisionApiClient.GetFaceAnnotations(imageBytes);
+
                     ImageStore imageStore = new ImageStore()
                     {
                         CreateDate = DateTime.Now,
                         ImageBase64String = imageUrl,
-                        ImageStoreId = 0
-                    };
+                        ImageStoreId = 0,
+                        AngerLikelihood = faceAnnotations[0],
+                        JoyLikelihood = faceAnnotations[1],
+                        SorrowLikelihood = faceAnnotations[2],
+                        SurpriseLikelihood = faceAnnotations[3]
+                };
 
                     _context.ImageStore.Add(imageStore);
                     _context.SaveChanges();

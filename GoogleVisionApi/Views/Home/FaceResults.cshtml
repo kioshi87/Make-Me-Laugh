@@ -1,4 +1,4 @@
-﻿@model List<FaceDetails>
+﻿@model List<ImageStore>
 
 @{
     ViewData["Title"] = "FaceResults";
@@ -8,10 +8,28 @@
 
 @if (@Model != null)
 {
-    @foreach (var face in @Model)
-    {
-        <img src="/CameraPhotos/@face.ImagePath">
-        <div>Laughing? @face.Joy</div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image ID</th>
+                <th>Image</th>
+                <th>Laughing?</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var image in @Model)
+            {
+                <tr>
+                    <td>@image.ImageStoreId</td>
+                    <td><img src="@image.ImageBase64String" width="160px"></td>
+                    <td>@image.JoyLikelihood</td>
+                    <td>@image.CreateDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
 
-    }
 }

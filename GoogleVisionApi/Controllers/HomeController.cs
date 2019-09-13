@@ -12,32 +12,24 @@ namespace GoogleVisionApi.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ImageStoreContext _context;
+
+        public HomeController(ImageStoreContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-
             return View();
         }
 
         public IActionResult FaceResults()
         {
-            var faceList = new List<FaceDetails>();
-            string path = "wwwroot/CameraPhotos";
-            var filePaths = Directory.GetFiles(path);
 
-            foreach (var imageName in filePaths)
-            {
-                var faceAnnotations = GoogleCloudPlatformApi.GoogleVisionApiClient.GetFaceAnnotations(imageName);
-                faceList.Add(new FaceDetails
-                {
-                    ImagePath = imageName.Remove(0, 21),
-                    Anger = faceAnnotations[0],
-                    Joy = faceAnnotations[1],
-                    Sorrow = faceAnnotations[2],
-                    Surprise = faceAnnotations[3]
-                });
-            }
+            var imageStoreList = _context.ImageStore.OrderByDescending(image => image.ImageStoreId).ToList();
 
-            return View(faceList);
+            return View(imageStoreList);
 
         }
 

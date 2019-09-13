@@ -11,6 +11,15 @@ namespace GoogleVisionApi.Models
         [Key]
         public int ImageStoreId { get; set; }
         public string ImageBase64String { get; set; }
+
+        public string JoyLikelihood { get; set; }
+
+        public string SorrowLikelihood { get; set; }
+
+        public string AngerLikelihood { get; set; }
+
+        public string SurpriseLikelihood { get; set; }
+
         public DateTime? CreateDate { get; set; }
         public PlayerModel PlayerId { get; set; }
     }
