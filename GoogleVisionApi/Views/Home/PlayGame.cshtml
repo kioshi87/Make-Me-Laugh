@@ -37,8 +37,9 @@
 <body>
     <br />
     <h1 class="text-center">Wait for the camera to appear...</h1>
-    <div class="container" align="center">    
+    <div class="container" align="center">
         <button onclick="start_pics()">Go</button>
+        <h1><div id="countdowntimer">3</div></h1>
         <div>
             <div class="panel-heading"></div>
             <div class="panel-body">
@@ -48,7 +49,7 @@
                     <h2>Capture images</h2>
                 </div>
             </div>
-        </div>     
+        </div>
         <div>
             <div class="panel-heading">Captured Photo</div>
             <div class="panel-body">
@@ -58,7 +59,8 @@
             <br />
         </div>
     </div>
-    
+
+
     <!-- First, include the Webcam.js JavaScript Library -->
     <script src="~/webcamjs/webcam.js"></script>
     <!-- Configure a few settings and attach camera -->
@@ -77,11 +79,11 @@
         function start_pics() {
             var cameraInterval = setInterval(take_snapshot, 1000);
             setTimeout(() => { clearInterval(cameraInterval) }, 3000);
+            countdown_timer();
         }
 
-       
         function take_snapshot() {
-        
+
             // take snapshot and get image data
             Webcam.snap(function (data_uri) {
                 // display results in page
@@ -89,6 +91,16 @@
                     '<img src="' + data_uri + '"/>';
                 Webcam.upload(data_uri, '/Camera/Capture');
             });
+        }
+
+        function countdown_timer() {
+        var timeleft = 3;
+        var downloadTimer = setInterval(function () {
+            timeleft--;
+            document.getElementById("countdowntimer").textContent = timeleft;
+            if (timeleft <= 0)
+                clearInterval(downloadTimer);
+        }, 1000);
         }
 
     </script>
