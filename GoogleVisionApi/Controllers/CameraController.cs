@@ -54,6 +54,7 @@ namespace GoogleVisionApi.Controllers
                         if (imageBytes != null)
                         {
                             // Storing Image in Folder  
+                            // look at sending image through Google Vision here -- maybe
                             StoreInDatabase(imageBytes);
                         }
 

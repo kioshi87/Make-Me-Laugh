@@ -35,6 +35,9 @@ namespace GoogleVisionApi.Controllers
 
         public IActionResult PlayGame()
         {
+
+
+
             return View();
         }
 
