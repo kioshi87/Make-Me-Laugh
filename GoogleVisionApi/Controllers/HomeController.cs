@@ -51,7 +51,7 @@ namespace GoogleVisionApi.Controllers
             if (ModelState.IsValid)
             {
                 _context.PlayerModel.Add(player);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction("PlayGame", player);
             }
 
