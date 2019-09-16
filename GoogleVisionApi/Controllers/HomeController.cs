@@ -83,6 +83,8 @@ namespace GoogleVisionApi.Controllers
         }
 
 
+        // Sends data from the form to the database via HttpPost attribute
+        // Validation is done server side through the ModelState.IsValid below
         [HttpPost]
         public IActionResult NewPlayer(PlayerModel player)
         {

@@ -8,16 +8,18 @@ namespace GoogleVisionApi.GoogleCloudPlatformApi
 {
     public class GoogleVisionApiClient
     {
+        // This class finds the images saved in the folder path
         public static string[] GetFaceAnnotations(string imagePath)
         {
             var faceAnnotationsList = new string[4];
-            // Instantiates a client
+            // Similar to HttpClient, Instantiates a client
             var client = ImageAnnotatorClient.Create();      
             // Load the image file into memory
             var image = Image.FromFile(imagePath);
             // Performs label detection on the image file
             var response = client.DetectFaces(image);
 
+            
             foreach (var annotation in response)
             {
                 //if (annotation. != null)
@@ -30,6 +32,8 @@ namespace GoogleVisionApi.GoogleCloudPlatformApi
             return faceAnnotationsList;
         }
 
+        // This class gets the response from Google for a single image file
+        // The data coming from GoogleVision is JSON
         public static string[] GetFaceAnnotations(byte[] imageBytes)
         {
             var faceAnnotationsList = new string[4];
@@ -40,6 +44,7 @@ namespace GoogleVisionApi.GoogleCloudPlatformApi
             // Performs label detection on the image file
             var response = client.DetectFaces(image);
 
+            // Receives response and stores in the database 
             foreach (var annotation in response)
             {
                 //if (annotation. != null)
