@@ -33,18 +33,30 @@ namespace GoogleVisionApi.Controllers
 
         }
 
-        public IActionResult PlayGame()
+        public IActionResult PlayGame(PlayerModel player)
         {
-
-
 
             return View();
         }
 
         public IActionResult NewPlayer()
         {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult NewPlayer(PlayerModel player)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.PlayerModel.Add(player);
+                _context.SaveChangesAsync();
+                return RedirectToAction("PlayGame", player);
+            }
 
             return View();
+            
         }
 
         public IActionResult Privacy()
