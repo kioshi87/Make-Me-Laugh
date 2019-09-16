@@ -8,12 +8,17 @@ namespace GoogleVisionApi.Models
 {
     public class PlayerModel
     {
+        public PlayerModel()
+        {
+            Score = 10;
+        }
+
         [Key]
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
         public string GameStartTimeStamp { get; set; }
         public bool Win { get; set; }
-        public string Score { get; set; }
+        public int Score { get; set; }
         public string FunniestPictures { get; set; } // Create a picture class and DB or save pictures directly to player DB and set ID string?
 
         public List<ImageStore> ImageList { get; set; }

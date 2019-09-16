@@ -22,6 +22,7 @@ namespace GoogleVisionApi.Controllers
             _environment = hostingEnvironment;
             _context = context;
             _session = httpContextAccessor.HttpContext.Session;
+            var _player = new PlayerModel(); 
         }
 
         public IActionResult Index()
@@ -40,11 +41,29 @@ namespace GoogleVisionApi.Controllers
 
         public IActionResult GameResults()
         {
+            var player = _context.PlayerModel.First(x => x.PlayerId == _session.GetInt32("playerId"));
+            
+            var playerImages = GetPlayerImages();
 
+            foreach (var image in playerImages)
+            {
+                if (image.JoyLikelihood == "VERY_LIKELY" || image.JoyLikelihood == "LIKELY" || image.JoyLikelihood == "POSSIBLE")
+                {
+                    player.Score--;
+                }
+
+            }
+            _session.SetInt32("playerScore", player.Score);
+
+            return View(playerImages);
+        }
+
+        public List<ImageStore> GetPlayerImages()
+        {
             var imageStoreList = _context.ImageStore.OrderByDescending(image => image.ImageStoreId)
                 .Where(image => image.PlayerId == _session.GetInt32("playerId")).ToList();
 
-            return View(imageStoreList);
+            return imageStoreList;
         }
 
         public IActionResult PlayGame(PlayerModel player)
@@ -62,12 +81,14 @@ namespace GoogleVisionApi.Controllers
         [HttpPost]
         public IActionResult NewPlayer(PlayerModel player)
         {
+           
             if (ModelState.IsValid)
             {
                 _context.PlayerModel.Add(player);
                 _context.SaveChanges();
                 _session.SetInt32("playerId", player.PlayerId);
                 _session.SetString("playerName", player.PlayerName);
+                _session.SetInt32("playerScore", player.Score);
                 return RedirectToAction("PlayGame", player);
             }
 

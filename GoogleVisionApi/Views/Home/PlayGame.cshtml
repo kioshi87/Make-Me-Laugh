@@ -80,7 +80,7 @@
 
         function start_pics() {
             var cameraInterval = setInterval(take_snapshot, 1000);
-            setTimeout(() => { clearInterval(cameraInterval) }, 3000);
+            setTimeout(() => { clearInterval(cameraInterval) }, 5000);
             countdown_timer();
         }
 
@@ -96,7 +96,7 @@
         }
 
         function countdown_timer() {
-            var timeleft = 3;
+            var timeleft = 5;
             var downloadTimer = setInterval(function () {
                 timeleft--;
                 document.getElementById("countdowntimer").textContent = timeleft;
