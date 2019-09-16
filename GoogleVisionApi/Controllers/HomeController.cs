@@ -38,6 +38,15 @@ namespace GoogleVisionApi.Controllers
 
         }
 
+        public IActionResult GameResults()
+        {
+
+            var imageStoreList = _context.ImageStore.OrderByDescending(image => image.ImageStoreId)
+                .Where(image => image.PlayerId == _session.GetInt32("playerId")).ToList();
+
+            return View(imageStoreList);
+        }
+
         public IActionResult PlayGame(PlayerModel player)
         {
 

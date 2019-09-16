@@ -1,0 +1,36 @@
+﻿@model List<ImageStore>
+
+@{
+    ViewData["Title"] = "GameResults";
+}
+
+<h1>GameResults</h1>
+
+
+@if (@Model != null)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image ID</th>
+                <th>Image</th>
+                <th>Laughing?</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var image in @Model)
+            {
+                <tr>
+                    <td>@image.ImageStoreId</td>
+                    <td><img src="@image.ImageBase64String" width="160px"></td>
+                    <td>@image.JoyLikelihood</td>
+                    <td>@image.CreateDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
