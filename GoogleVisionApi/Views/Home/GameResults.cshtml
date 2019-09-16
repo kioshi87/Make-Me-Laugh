@@ -1,42 +1,65 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using System.Collections.Generic;
 @model List<ImageStore>
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "GameResults";
+
+    var playerName = @HttpContextAccessor.HttpContext.Session.GetString("playerName");
+    var playerScore = @HttpContextAccessor.HttpContext.Session.GetInt32("playerScore");
+    
 }
 
-<h2>GameResults</h2>
-<h2>Player: @HttpContextAccessor.HttpContext.Session.GetString("playerName")</h2>
-<h3>Score: @HttpContextAccessor.HttpContext.Session.GetInt32("playerScore")</h3>
+    <h2>GameResults</h2>
+    <h2>Player: @playerName</h2>
+    <h3>Score: @playerScore</h3>
 
-@if (@Model != null)
-{
+    @if (playerScore == 10)
+    {
+        <h1>Wow, didn't laugh once!</h1>
+    }
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Image ID</th>
-                <th>Image</th>
-                <th>Laughing?</th>
-                <th>Created Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var image in @Model)
-            {
+    @if (@Model != null && playerScore < 10)
+    {
+
+        <h1>Caught ya laughing!</h1>
+
+        <div class="container">
+            <div class="row">
+                @foreach (var image in Model)
+                {
+                    <div class="col-sm">
+                        <img src="@image.ImageBase64String"/>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @*<table class="table">
+            <thead>
                 <tr>
-                    <td>@image.Player.PlayerName</td>
-                    <td>@image.ImageStoreId</td>
-                    <td><img src="@image.ImageBase64String" width="160px"></td>
-                    <td>@image.JoyLikelihood</td>
-                    <td>@image.CreateDate</td>
+                    <th>Player Name</th>
+                    <th>Image ID</th>
+                    <th>Image</th>
+                    <th>Laughing?</th>
+                    <th>Created Date</th>
                 </tr>
-                
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var image in @Model)
+                {
+                    <tr>
+                        <td>@image.Player.PlayerName</td>
+                        <td>@image.ImageStoreId</td>
+                        <td><img src="@image.ImageBase64String" width="160px"></td>
+                        <td>@image.JoyLikelihood</td>
+                        <td>@image.CreateDate</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>*@
 
 
-}
+    }

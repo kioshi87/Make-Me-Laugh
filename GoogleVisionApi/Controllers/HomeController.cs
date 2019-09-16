@@ -41,15 +41,16 @@ namespace GoogleVisionApi.Controllers
 
         public IActionResult GameResults()
         {
-            var player = _context.PlayerModel.First(x => x.PlayerId == _session.GetInt32("playerId"));
-            
+            var player = _context.PlayerModel.First(x => x.PlayerId == _session.GetInt32("playerId"));           
             var playerImages = GetPlayerImages();
+            var playerLaughingImages = new List<ImageStore>();
 
             foreach (var image in playerImages)
             {
                 if (image.JoyLikelihood.ToUpper() == "VERYLIKELY" || image.JoyLikelihood.ToUpper() == "LIKELY" || image.JoyLikelihood.ToUpper() == "POSSIBLE")
                 {
                     player.Score -= 1;
+                    playerLaughingImages.Add(image);
                 }
 
             }
@@ -57,7 +58,7 @@ namespace GoogleVisionApi.Controllers
             _context.SaveChanges();
             _session.SetInt32("playerScore", player.Score);
 
-            return View(playerImages);
+            return View(playerLaughingImages);
         }
 
         public List<ImageStore> GetPlayerImages()
