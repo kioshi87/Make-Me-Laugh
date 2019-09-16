@@ -91,6 +91,7 @@ namespace GoogleVisionApi.Controllers
            
             if (ModelState.IsValid && player.PlayerName != null)
             {
+
                 _context.PlayerModel.Add(player);
                 _context.SaveChanges();
                 _session.SetInt32("playerId", player.PlayerId);

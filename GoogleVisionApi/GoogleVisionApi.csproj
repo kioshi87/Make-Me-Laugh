@@ -49,6 +49,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Views\Camera\" />
     <Folder Include="wwwroot\CameraPhotos\" />
   </ItemGroup>
 
