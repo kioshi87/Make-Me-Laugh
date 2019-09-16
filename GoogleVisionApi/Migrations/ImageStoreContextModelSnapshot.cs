@@ -33,7 +33,7 @@ namespace GoogleVisionApi.Migrations
 
                     b.Property<string>("JoyLikelihood");
 
-                    b.Property<int?>("PlayerId1");
+                    b.Property<int>("PlayerId");
 
                     b.Property<string>("SorrowLikelihood");
 
@@ -41,7 +41,7 @@ namespace GoogleVisionApi.Migrations
 
                     b.HasKey("ImageStoreId");
 
-                    b.HasIndex("PlayerId1");
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("ImageStore");
                 });
@@ -69,9 +69,10 @@ namespace GoogleVisionApi.Migrations
 
             modelBuilder.Entity("GoogleVisionApi.Models.ImageStore", b =>
                 {
-                    b.HasOne("GoogleVisionApi.Models.PlayerModel", "PlayerId")
+                    b.HasOne("GoogleVisionApi.Models.PlayerModel", "Player")
                         .WithMany("ImageList")
-                        .HasForeignKey("PlayerId1");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

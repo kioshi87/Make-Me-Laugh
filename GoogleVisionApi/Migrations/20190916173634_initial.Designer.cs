@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoogleVisionApi.Migrations
 {
     [DbContext(typeof(ImageStoreContext))]
-    [Migration("20190912000636_Added player model")]
-    partial class Addedplayermodel
+    [Migration("20190916173634_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -27,15 +27,23 @@ namespace GoogleVisionApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AngerLikelihood");
+
                     b.Property<DateTime?>("CreateDate");
 
                     b.Property<string>("ImageBase64String");
 
-                    b.Property<int?>("PlayerId1");
+                    b.Property<string>("JoyLikelihood");
+
+                    b.Property<int>("PlayerId");
+
+                    b.Property<string>("SorrowLikelihood");
+
+                    b.Property<string>("SurpriseLikelihood");
 
                     b.HasKey("ImageStoreId");
 
-                    b.HasIndex("PlayerId1");
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("ImageStore");
                 });
@@ -63,9 +71,10 @@ namespace GoogleVisionApi.Migrations
 
             modelBuilder.Entity("GoogleVisionApi.Models.ImageStore", b =>
                 {
-                    b.HasOne("GoogleVisionApi.Models.PlayerModel", "PlayerId")
+                    b.HasOne("GoogleVisionApi.Models.PlayerModel", "Player")
                         .WithMany("ImageList")
-                        .HasForeignKey("PlayerId1");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
