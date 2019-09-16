@@ -87,7 +87,7 @@ namespace GoogleVisionApi.Controllers
         public IActionResult NewPlayer(PlayerModel player)
         {
            
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && player.PlayerName != null)
             {
                 _context.PlayerModel.Add(player);
                 _context.SaveChanges();
