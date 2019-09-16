@@ -1,11 +1,13 @@
-﻿@model List<ImageStore>
+﻿@using Microsoft.AspNetCore.Http
+@model List<ImageStore>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "GameResults";
 }
 
-<h1>GameResults</h1>
-
+<h2>GameResults</h2>
+<h2>@HttpContextAccessor.HttpContext.Session.GetString("playerName")</h2>
 
 @if (@Model != null)
 {
@@ -13,6 +15,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Player Name</th>
                 <th>Image ID</th>
                 <th>Image</th>
                 <th>Laughing?</th>
@@ -23,11 +26,13 @@
             @foreach (var image in @Model)
             {
                 <tr>
+                    <td>@image.Player.PlayerName</td>
                     <td>@image.ImageStoreId</td>
                     <td><img src="@image.ImageBase64String" width="160px"></td>
                     <td>@image.JoyLikelihood</td>
                     <td>@image.CreateDate</td>
                 </tr>
+                
             }
         </tbody>
     </table>
