@@ -21,6 +21,12 @@ namespace GoogleVisionApi.Models
         public string SurpriseLikelihood { get; set; }
 
         public DateTime? CreateDate { get; set; }
-        public PlayerModel PlayerId { get; set; }
+        //public PlayerModel PlayerId { get; set; }
+
+        public PlayerModel Player { get; set; }
+
+        public int PlayerId { get; set; }
+
+
     }
 }

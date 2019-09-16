@@ -39,6 +39,14 @@ namespace GoogleVisionApi
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".makeMeLaugh";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            services.AddHttpContextAccessor();
+            services.AddHttpClient();
             services.AddDbContext<ImageStoreContext>(options =>
             {
                 options.UseSqlServer($"Server=tcp:makemelaugh.database.windows.net,1433;Initial Catalog=MakeMeLaugh;Persist Security Info=False;User ID={dbInfo.Username};Password={dbInfo.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
@@ -67,6 +75,7 @@ namespace GoogleVisionApi
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
