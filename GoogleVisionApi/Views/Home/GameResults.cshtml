@@ -11,55 +11,55 @@
     
 }
 
-    <h2>GameResults</h2>
-    <h2>Player: @playerName</h2>
-    <h3>Score: @playerScore</h3>
 
-    @if (playerScore == 10)
-    {
-        <h1>Wow, didn't laugh once!</h1>
-    }
+    <body>
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
 
-    @if (@Model != null && playerScore < 10)
-    {
+                <!-- Masthead Heading -->
+                <div class="masthead-subheading font-weight-light mb-0">GameResults</div>
+                <div class="masthead-subheading font-weight-light mb-0">Player: @playerName</div>
+                <div class="masthead-subheading font-weight-light mb-0">Score: @playerScore</div>
 
-        <h1>Caught ya laughing!</h1>
-
-        <div class="container">
-            <div class="row">
-                @foreach (var image in Model)
+                @if (playerScore == 10)
                 {
-                    <div class="col-sm">
-                        <img src="@image.ImageBase64String" width="160px"/>
+                    <h1>Wow, didn't laugh once!</h1>
+                }
+
+                @if (@Model != null && playerScore < 10)
+                {
+
+                    <h1>Caught ya laughing!</h1>
+
+                    <div class="container">
+                        <div class="row">
+                            @foreach (var image in Model)
+                            {
+                                <div class="col-sm">
+                                    <img src="@image.ImageBase64String" width="160px" />
+                                </div>
+                            }
+                        </div>
                     </div>
                 }
+
+
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- Masthead Subheading -->
+                <p class="masthead-subheading font-weight-light mb-0"></p>
+
             </div>
-        </div>
-
-        @*<table class="table">
-            <thead>
-                <tr>
-                    <th>Player Name</th>
-                    <th>Image ID</th>
-                    <th>Image</th>
-                    <th>Laughing?</th>
-                    <th>Created Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var image in @Model)
-                {
-                    <tr>
-                        <td>@image.Player.PlayerName</td>
-                        <td>@image.ImageStoreId</td>
-                        <td><img src="@image.ImageBase64String" width="160px"></td>
-                        <td>@image.JoyLikelihood</td>
-                        <td>@image.CreateDate</td>
-                    </tr>
-
-                }
-            </tbody>
-        </table>*@
+        </header>
+    </body>
 
 
-    }
+
+

@@ -47,7 +47,9 @@ namespace GoogleVisionApi.Controllers
 
             foreach (var image in playerImages)
             {
-                if (image.JoyLikelihood.ToUpper() == "VERYLIKELY" || image.JoyLikelihood.ToUpper() == "LIKELY" || image.JoyLikelihood.ToUpper() == "POSSIBLE")
+                if (image.JoyLikelihood != null && (image.JoyLikelihood.ToUpper() == "VERYLIKELY" 
+                    || image.JoyLikelihood.ToUpper() == "LIKELY" 
+                    || image.JoyLikelihood.ToUpper() == "POSSIBLE"))
                 {
                     player.Score -= 1;
                     playerLaughingImages.Add(image);

@@ -9,58 +9,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>WebcamJS Test Page</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <style type="text/css">
-        body {
-            font-family: Helvetica, sans-serif;
-        }
 
-        h2, h3 {
-            margin-top: 0;
-        }
-
-        form {
-            margin-top: 15px;
-        }
-
-            form > input {
-                margin-right: 15px;
-            }
-
-        #buttonhide {
-            background: transparent;
-            border: none !important;
-            font-size: 0;
-        }
-    </style>
 </head>
 <body>
-    <br />
-    <h2 class="text-center">Wait for the camera to appear...</h2>
-    <div class="container" align="center">
-        <button onclick="start_pics()">Go</button>
-        <h1><div id="countdowntimer">5</div></h1>
-        <div>
-            <div class="panel-heading"></div>
-            <div class="panel-body">
-                <div id="my_camera"></div>
-                <!-- A button for taking snaps -->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+
+            <!-- Masthead Heading -->
+            <h4 class="masthead-subheading font-weight-light mb-0">Wait for the camera to appear...</h4>
+            <div class="container" align="center">
+                <button onclick="start_pics()" class="btn btn-xl btn-outline-light" id="countdowntimer">Go</button>
+                @*<h1><div id="countdowntimer">5</div></h1>*@
                 <div>
-                    <h2>Capture images</h2>
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <div id="my_camera"></div>
+                        <!-- A button for taking snaps -->
+                        <div>
+                            <h2>Capture images</h2>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="panel-heading">Captured Photo</div>
+                    <div class="panel-body">
+                        <div id="results">Your captured image will appear here...</div>
+                    </div>
+                    <br />
+                    <br />
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="panel-heading">Captured Photo</div>
-            <div class="panel-body">
-                <div id="results">Your captured image will appear here...</div>
+
+
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
             </div>
-            <br />
-            <br />
+
+            <!-- Masthead Subheading -->
+            <p class="masthead-subheading font-weight-light mb-0">Get Ready!</p>
+
         </div>
-    </div>
+    </header>
 
 
     <!-- First, include the Webcam.js JavaScript Library -->
