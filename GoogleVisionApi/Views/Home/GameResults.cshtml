@@ -8,7 +8,7 @@
 
 <h2>GameResults</h2>
 <h2>Player: @HttpContextAccessor.HttpContext.Session.GetString("playerName")</h2>
-<h3>Score: @HttpContextAccessor.HttpContext.Session.GetString("playerScore")</h3>
+<h3>Score: @HttpContextAccessor.HttpContext.Session.GetInt32("playerScore")</h3>
 
 @if (@Model != null)
 {

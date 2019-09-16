@@ -47,12 +47,14 @@ namespace GoogleVisionApi.Controllers
 
             foreach (var image in playerImages)
             {
-                if (image.JoyLikelihood == "VERY_LIKELY" || image.JoyLikelihood == "LIKELY" || image.JoyLikelihood == "POSSIBLE")
+                if (image.JoyLikelihood.ToUpper() == "VERYLIKELY" || image.JoyLikelihood.ToUpper() == "LIKELY" || image.JoyLikelihood.ToUpper() == "POSSIBLE")
                 {
-                    player.Score--;
+                    player.Score -= 1;
                 }
 
             }
+            _context.PlayerModel.Update(player);
+            _context.SaveChanges();
             _session.SetInt32("playerScore", player.Score);
 
             return View(playerImages);
