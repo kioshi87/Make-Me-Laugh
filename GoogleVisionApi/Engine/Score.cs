@@ -15,6 +15,11 @@ namespace GoogleVisionApi.Engine
             if (laughResult == true)
             {
                 score--;
+
+                if (score < 0)
+                {
+                    score = 0;
+                }
             }
 
             return score;

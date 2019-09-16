@@ -41,6 +41,12 @@ namespace GoogleVisionApi.Controllers
             return View();
         }
 
+        public IActionResult NewPlayer()
+        {
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
