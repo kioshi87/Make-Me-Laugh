@@ -16,9 +16,9 @@
         <div class="container d-flex align-items-center flex-column">
 
             <!-- Masthead Heading -->
-            <a class="masthead-subheading font-weight-light mb-0">Wait for the camera to appear...</a>
+            <h3 class="masthead-subheading font-weight-light mb-0" id="wait_message">Wait for the camera to appear...</h3>
             <div class="container" align="center">
-                <button onclick="start_pics()" class="btn btn-xl btn-outline-light" id="countdowntimer">Go</button>
+                <button onclick="start_pics()" class="btn btn-xl btn-outline-light" id="go_button">Go</button>
                 <div>
                     <div class="panel-heading"></div>
                     <div class="panel-body">
@@ -72,8 +72,8 @@
     <script language="JavaScript">
 
         function start_pics() {
-            var cameraInterval = setInterval(take_snapshot, 1000);
-            setTimeout(() => { clearInterval(cameraInterval) }, 5000);
+            var cameraInterval = setInterval(take_snapshot, 500);
+            setTimeout(() => { clearInterval(cameraInterval) }, 10000);
             countdown_timer();
             
         }
@@ -90,10 +90,11 @@
         }
 
         function countdown_timer() {
-            var timeleft = 5;
+            var timeleft = 10;
             var downloadTimer = setInterval(function () {
                 timeleft--;
-                document.getElementById("countdowntimer").textContent = timeleft;
+                document.getElementById("go_button").style.display = "none";
+                document.getElementById("wait_message").textContent = timeleft + " seconds left...Don't laugh!";
                 if (timeleft <= 0) {
                     clearInterval(downloadTimer);
                     window.location.replace("/Home/GameResults");

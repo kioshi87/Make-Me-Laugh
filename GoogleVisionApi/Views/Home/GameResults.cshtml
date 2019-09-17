@@ -17,21 +17,21 @@
             <div class="container d-flex align-items-center flex-column">
 
                 <!-- Masthead Heading -->
-                <div class="masthead-subheading font-weight-light mb-0">GameResults</div>
+                <h3 class="masthead-subheading font-weight-light mb-0">Results</h3>
                 <div class="masthead-subheading font-weight-light mb-0">Player: @playerName</div>
-                <div class="masthead-subheading font-weight-light mb-0">Score: @playerScore</div>
+                <div class="masthead-subheading font-weight-light mb-0">Score: @playerScore out of 10</div>
+
 
                 @if (playerScore == 10)
                 {
-                    <h1>Wow, didn't laugh once!</h1>
+                    <div class="masthead-subheading font-weight-light mb-0">Perfect 10, didn't laugh once!</div>
                 }
 
                 @if (@Model != null && playerScore < 10)
                 {
 
-                    <h1>Caught ya laughing!</h1>
-
                     <div class="container">
+                        <div class="masthead-subheading font-weight-light mb-0">Caught ya laughing!</div>
                         <div class="row">
                             @foreach (var image in Model)
                             {
