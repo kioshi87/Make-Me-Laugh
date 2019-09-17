@@ -72,7 +72,7 @@
     <script language="JavaScript">
 
         function start_pics() {
-            var cameraInterval = setInterval(take_snapshot, 500);
+            var cameraInterval = setInterval(take_snapshot, 1000);
             setTimeout(() => { clearInterval(cameraInterval) }, 10000);
             countdown_timer();
             
