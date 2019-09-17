@@ -17,6 +17,9 @@ namespace GoogleVisionApi
 
         public static void Main(string[] args)
         {
+        //    var jokeText = "Where do you find a cow with no legs? Right where you left it.";
+        //    GoogleVisionApi.GoogleCloudPlatformApi.GoogleTextToSpeechClient.GetSpeechFromText(jokeText);
+
             BuildWebHost(args).Run();
         }
 
