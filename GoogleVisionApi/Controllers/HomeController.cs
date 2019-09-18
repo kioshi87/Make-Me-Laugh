@@ -194,6 +194,33 @@ namespace GoogleVisionApi.Controllers
             }
         }
 
+        public IActionResult LowestScores()
+        {
+            var lowestScoresPlayerList = new List<PlayerModel>();
+            var worstPlayers = _context.PlayerModel.OrderBy(x => x.Score).Take(10).ToList();
+
+            foreach (var player in worstPlayers)
+            {
+                var lowScorePlayer = new PlayerModel() { Score = player.Score };
+                lowScorePlayer.ImageList = new List<ImageStore>();
+                lowScorePlayer.PlayerName = player.PlayerName;
+                
+                var lowScorePlayersPics = _context.ImageStore.Where(image => image.PlayerId == player.PlayerId 
+                && (image.JoyLikelihood != null && (image.JoyLikelihood.ToUpper() == "VERYLIKELY"
+                    || image.JoyLikelihood.ToUpper() == "LIKELY"
+                    || image.JoyLikelihood.ToUpper() == "POSSIBLE")));
+
+                foreach (var pic in lowScorePlayersPics)
+                {
+                    lowScorePlayer.ImageList.Add(pic);
+                }
+
+                lowestScoresPlayerList.Add(lowScorePlayer);
+            }
+            
+            return View(lowestScoresPlayerList);
+        }
+
         public IActionResult Privacy()
         {
             return View();
